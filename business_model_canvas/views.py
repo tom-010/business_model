@@ -36,3 +36,10 @@ class EditBusinessModelCanvas(View):
         bmc.revenue_streams = request.POST['revenue_streams']
         bmc.save()
         return redirect(reverse('business_model_canvas:edit', kwargs={'pk': bmc.pk}))
+
+class CreateNewVersionView(View):
+
+    def post(self, request,pk):
+        bmc = get_object_or_404(BusinessModelCanvas, pk=pk)
+        bmc = bmc.create_new_version()
+        return redirect(reverse('business_model_canvas:edit', kwargs={'pk': bmc.pk}))

@@ -23,4 +23,22 @@ class BusinessModelCanvas(WithDates, models.Model):
     cost_structure = models.TextField(default='', blank=True)
     revenue_streams = models.TextField(default='', blank=True)
 
+    version = models.IntegerField(default=1)
+
     previous = models.ForeignKey('BusinessModelCanvas', null=True, blank=True, on_delete=models.SET_NULL)
+
+    def create_new_version(self):
+        return BusinessModelCanvas.objects.create(
+            name=self.name,
+            key_partners=self.key_partners,
+            key_activies=self.key_activies,
+            key_resources=self.key_resources,
+            value_propositions=self.value_propositions,
+            customer_relationships=self.customer_relationships,
+            channels=self.channels,
+            customer_segments=self.customer_segments,
+            cost_structure=self.cost_structure,
+            revenue_streams=self.revenue_streams,
+            version=self.version+1,
+            previous=self,
+        )

@@ -21,16 +21,22 @@
 </style>
 
 
+<form method="POST" class="float-right" action="{% url 'business_model_canvas:new_version' bmc.pk %}">
+  {% csrf_token %}
+  Version: {{bmc.version}}
+  <button class="btn btn-secondary">New Version</button>
+</form>
+
 <form method="POST">
     {% csrf_token %}
+
+    <button class="btn btn-primary mb-2">Save</button>
+    Created: {{bmc.created_at}}
 
 <h1>
     <input name="name" value="{{bmc.name}}" class="form-control" />
 
 </h1>
-
-
-<button class="btn btn-primary mb-2">Save</button>
 
 <table id="bizcanvas" cellspacing="0" border="1" style="width: 100%;">
     <!-- Upper part -->

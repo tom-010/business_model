@@ -1,3 +1,4 @@
 from django.contrib import admin
+from business_model_canvas.models import *
 
-# Register your models here.
+admin.site.register(BusinessModelCanvas)

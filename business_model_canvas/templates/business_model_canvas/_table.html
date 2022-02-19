@@ -4,6 +4,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Version</th>
                 <th>Created</th>
                 <th>Last Updated</th>
             </tr>
@@ -12,6 +13,7 @@
             {% for bmc in business_model_canvases %}
             <tr>
                 <td><a href="{% url 'business_model_canvas:edit' pk=bmc.pk %}">{{bmc.name}}</a></td>
+                <td>{{bmc.version}}</td>
                 <td>{{bmc.created_at}}</td>
                 <td>{{bmc.updated_at}}</td>
             </tr>
