@@ -25,6 +25,7 @@ class EditBusinessModelCanvas(View):
     def post(self, request, pk):
         bmc = get_object_or_404(BusinessModelCanvas, pk=pk)
         bmc.name = request.POST['name']
+        bmc.one_sentence = request.POST['one_sentence']
         bmc.key_partners = request.POST['key_partners']
         bmc.key_activies = request.POST['key_activies']
         bmc.key_resources = request.POST['key_resources']

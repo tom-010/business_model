@@ -30,6 +30,7 @@ class BusinessModelCanvas(WithDates, models.Model):
     def create_new_version(self):
         return BusinessModelCanvas.objects.create(
             name=self.name,
+            one_sentence=self.one_sentence,
             key_partners=self.key_partners,
             key_activies=self.key_activies,
             key_resources=self.key_resources,
