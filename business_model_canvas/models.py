@@ -11,6 +11,8 @@ class BusinessModelCanvas(WithDates, models.Model):
 
     name = models.CharField(max_length=256, null=True, blank=True)
 
+    one_sentence = models.TextField(default='', blank=True)
+
     key_partners = models.TextField(default='', blank=True)
     key_activies = models.TextField(default='', blank=True)
     key_resources = models.TextField(default='', blank=True)
