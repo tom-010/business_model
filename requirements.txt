@@ -1,14 +1,4 @@
 numpy
-matplotlib
-Django
-psycopg2
-requests
-beautifulsoup4
 exception-safe 
 django-save-deep
-scipy
-seaborn
 run-parallel
-notebook
-pandas
-sklearn

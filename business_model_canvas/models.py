@@ -1,6 +1,4 @@
-from pyexpat import model
 from django.db import models
-import matplotlib.pyplot as plt
 
 class WithDates(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
