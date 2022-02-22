@@ -1,0 +1,115 @@
+{% extends 'theme/base.html' %}
+
+
+
+
+{% block content %}
+
+<style>
+#bizcanvas td {
+    vertical-align: top;
+}
+#bizcanvas h4 {
+    font-size: 0.8em;
+    color: black;
+    font-weight: bold;
+}
+#bizcanvas textarea {
+    width: 100%;
+    margin: 0;
+}
+</style>
+
+
+<form method="POST" class="float-right" action="{% url 'story:new_version' story.pk %}">
+  {% csrf_token %}
+  Version: {{story.version}}
+  <button class="btn btn-secondary">New Version</button>
+</form>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <button class="btn btn-primary mb-2">Save</button>
+    Created: {{story.created_at}}
+
+<h1>
+    <input name="name" value="{{story.name}}" class="form-control" />
+
+</h1>
+
+
+<table id="bizcanvas" cellspacing="0" border="1" style="width: 100%;">
+    <!-- Upper part -->
+    <tr>
+      <td style="width: 25%" colspan="2">
+        <h4>A Character</h4>
+        <textarea rows="12" tabindex="1" name="character">{{story.character}}</textarea>
+      </td>
+      <td style="width: 25%" colspan="2">
+        <h4>And Meets a Guide</h4>
+
+        Empathy
+        <textarea rows="5" tabindex="6" name="guide_empathy">{{story.guide_empathy}}</textarea>
+
+        Competence
+        <textarea rows="5" tabindex="7" name="guide_competence">{{story.guide_competence}}</textarea>
+
+
+      </td>
+      <td style="width: 25%" colspan="2" rowspan="2">
+        <h4>And Calls Them to Action</h4>
+        
+        Direct
+        <textarea rows="11" tabindex="10" name="action_direct">{{story.action_direct}}</textarea>
+
+        Transitional
+        <textarea rows="17" tabindex="11" name="action_transitional">{{story.action_transitional}}</textarea>
+
+
+      </td>
+      <td style="width: 25%" colspan="2">
+        <h4>That Helps them to Avoid Failure</h4>
+        <textarea rows="12" tabindex="12" name="avoid_failure">{{story.avoid_failure}}</textarea>
+      </td>
+    </tr>
+
+    <!-- Lower part -->
+    <tr>
+      <td style="width: 25%" colspan="2">
+        <h4>Has a Problem</h4>
+        
+        Villain
+        <textarea rows="3" tabindex="2" name="problem_villain">{{story.problem_villain}}</textarea>
+
+        External
+        <textarea rows="3" tabindex="3" name="problem_external">{{story.problem_external}}</textarea>
+
+        Internal
+        <textarea rows="3" tabindex="4" name="problem_internal">{{story.problem_internal}}</textarea>
+
+        Philosophical
+        <textarea rows="3" tabindex="5" name="problem_philosophical">{{story.problem_philosophical}}</textarea>
+      </td>
+      <td style="width: 25%" colspan="2">
+        <h4>Who Gives them a Plan</h4>
+        
+        Process
+        <textarea rows="7" tabindex="8" name="plan_process">{{story.plan_process}}</textarea>
+
+        Agreement
+        <textarea rows="7" tabindex="9" name="plan_agreement">{{story.plan_agreement}}</textarea>
+
+
+      </td>
+      <td style="width: 25%" colspan="2">
+        <h4>And Ends in a Success</h4>
+        <textarea rows="17" tabindex="13" name="success">{{story.success}}</textarea>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+
+{% endblock %}
