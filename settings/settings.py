@@ -29,7 +29,8 @@ INSTALLED_APPS = [
 
     'theme',
     'business_model_canvas',
-    'story'
+    'story',
+    'project'
 ]
 
 MIDDLEWARE = [
