@@ -4,9 +4,6 @@ from helper.with_dates_and_version import WithDates
 class Project(WithDates, models.Model):
     name = models.CharField(max_length=256)
 
-    @property
-    def customer_segments(self):
-        pass
 
     @property
     def business_model_canvases(self):
