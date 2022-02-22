@@ -1,32 +1,5 @@
 from django.db import models
-from save_deep import save_deep
-
-class WithDatesAndVersion(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    version = models.IntegerField(default=1)
-
-    class Meta:
-        abstract = True
-
-    def create_new_version(self):
-        new_version = self.__class__()
-        for field in self._meta.fields:
-            name = field.name
-            setattr(new_version, name, getattr(self, name))
-        new_version.pk = None
-        new_version.created_at = None
-        new_version.updated_at = None
-        
-        if(hasattr(new_version, 'previous')):
-            new_version.previous = self
-
-        version = self.version
-        if not version:
-            version = 0
-        new_version.version = version + 1
-        return save_deep(new_version)
-
+from helper.with_dates_and_version import WithDatesAndVersion
 
 class BusinessModelCanvas(WithDatesAndVersion, models.Model):
     previous = models.ForeignKey('BusinessModelCanvas', null=True, blank=True, on_delete=models.SET_NULL)
@@ -61,40 +34,3 @@ class BusinessModelCanvas(WithDatesAndVersion, models.Model):
             cost_structure='the cost_structure',
             revenue_streams='the revenue_streams'
         )
-
-    
-class Story(WithDatesAndVersion, models.Model):
-    previous = models.ForeignKey('Story', null=True, blank=True, on_delete=models.SET_NULL)
-
-    character = models.TextField(default='', blank=True)
-    problem_villain = models.TextField(default='', blank=True)
-    problem_external = models.TextField(default='', blank=True)
-    problem_internal = models.TextField(default='', blank=True)
-    problem_philosophical = models.TextField(default='', blank=True)
-    guide_empathy = models.TextField(default='', blank=True)
-    guide_competence = models.TextField(default='', blank=True)
-    plan_process = models.TextField(default='', blank=True)
-    plan_agreement = models.TextField(default='', blank=True)
-    action_direct = models.TextField(default='', blank=True)
-    action_transitional = models.TextField(default='', blank=True)
-    avoid_failure = models.TextField(default='', blank=True)
-    success = models.TextField(default='', blank=True)
-
-    @property
-    def problem(self):
-        return f'(Villain) {self.problem_villain} (External) {self.problem_external} (Internal) {self.problem_internal} (Philosophical) {self.problem_philosophical}'
-
-    @property
-    def guide(self):
-        return f'(Empathy) {self.guide_empathy} (Competence) {self.guide_competence}'
-
-    @property
-    def plan(self):
-        return f'(Process) {self.plan_process} (Agreement) {self.plan_agreement}'
-
-    @property
-    def action(self):
-        return f'(Direct) {self.action_direct} (Transitional) {self.action_transitional}'
-
-    def __str__(self):
-        return f'[Character] {self.character} [Problem] {self.problem} [Guide] {self.guide} [Plan] {self.plan} [Action] {self.action} [Avoid Failure] {self.avoid_failure} [Success] {self.success}'

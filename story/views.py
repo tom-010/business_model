@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import redirect, render, reverse, get_object_or_404
-from business_model_canvas.models import BusinessModelCanvas
+from story.models import Story
 
 class BusinessModelCanvasesView(View):
 

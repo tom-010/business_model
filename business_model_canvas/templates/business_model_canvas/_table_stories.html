@@ -1,0 +1,23 @@
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Created</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for story in stories %}
+            <tr>
+                <td><a href="{% url 'story:edit' pk=story.pk %}">{{story.name}}</a></td>
+                <td>{{story.version}}</td>
+                <td>{{story.created_at}}</td>
+                <td>{{story.updated_at}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
