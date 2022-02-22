@@ -1,0 +1,16 @@
+{% extends 'theme/base.html' %}
+
+
+
+
+{% block content %}
+
+<form method="POST" action="{% url 'business_model_canvas:create' %}">
+    {% csrf_token %}
+    <input type="text" required name="name" class="form-control" placeholder="Name">
+    <button class="btn btn-primary">Create BMC</button>
+
+</form>
+
+{% include 'business_model_canvas/_table.html' %}
+{% endblock %}

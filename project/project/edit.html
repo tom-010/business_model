@@ -1,0 +1,94 @@
+{% extends 'theme/base.html' %}
+
+
+
+
+{% block content %}
+
+<style>
+#bizcanvas td {
+    vertical-align: top;
+}
+#bizcanvas h4 {
+    font-size: 0.8em;
+    color: black;
+    font-weight: bold;
+}
+#bizcanvas textarea {
+    width: 100%;
+    margin: 0;
+}
+</style>
+
+
+<form method="POST" class="float-right" action="{% url 'business_model_canvas:new_version' bmc.pk %}">
+  {% csrf_token %}
+  Version: {{bmc.version}}
+  <button class="btn btn-secondary">New Version</button>
+</form>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <button class="btn btn-primary mb-2">Save</button>
+    Created: {{bmc.created_at}}
+
+<h1>
+    <input name="name" value="{{bmc.name}}" class="form-control" />
+
+</h1>
+
+<textarea style="width: 100%" rows="2" name="one_sentence" placeholder="Business Model in One Sentence">{{bmc.one_sentence}}</textarea>
+
+<table id="bizcanvas" cellspacing="0" border="1" style="width: 100%;">
+    <!-- Upper part -->
+    <tr>
+      <td colspan="2" rowspan="2">
+        <h4>Key Partners</h4>
+        <textarea rows="22" tabindex="1" name="key_partners">{{bmc.key_partners}}</textarea>
+      </td>
+      <td colspan="2">
+        <h4>Key Activities</h4>
+        <textarea rows="10" tabindex="2" name="key_activies">{{bmc.key_activies}}</textarea>
+      </td>
+      <td colspan="2" rowspan="2">
+        <h4>Value Proposition</h4>
+        <textarea rows="22" tabindex="4" name="value_propositions">{{bmc.value_propositions}}</textarea>
+      </td>
+      <td colspan="2">
+        <h4>Customer Relationship</h4>
+        <textarea rows="10" tabindex="5" name="customer_relationships">{{bmc.customer_relationships}}</textarea>
+      </td>
+      <td colspan="2" rowspan="2">
+        <h4>Customer Segments</h4>
+        <textarea rows="22" tabindex="7" name="customer_segments">{{bmc.customer_segments}}</textarea>
+      </td>
+    </tr>
+
+    <!-- Lower part -->
+    <tr>
+      <td colspan="2">
+        <h4>Key Resources</h4>
+        <textarea rows="10" tabindex="3" name="key_resources">{{bmc.key_resources}}</textarea>
+      </td>
+      <td colspan="2">
+        <h4>Channels</h4>
+        <textarea rows="10" tabindex="6" name="channels">{{bmc.channels}}</textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <h4>Cost Structure</h4>
+        <textarea rows="10" tabindex="8" name="cost_structure">{{bmc.cost_structure}}</textarea>
+      </td>
+      <td colspan="5">
+        <h4>Revenue Streams</h4>
+        <textarea rows="10" tabindex="9" name="revenue_streams">{{bmc.revenue_streams}}</textarea>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+
+{% endblock %}
