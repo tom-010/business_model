@@ -39,6 +39,20 @@ class EditStory(View):
         story.action_transitional = request.POST['action_transitional']
         story.avoid_failure = request.POST['avoid_failure']
         story.success = request.POST['success']
+        story.integrated_story = request.POST['integrated_story']
+        story.one_line_character = request.POST['one_line_character']
+        story.one_line_problem = request.POST['one_line_problem']
+        story.one_line_plan = request.POST['one_line_plan']
+        story.one_line_success = request.POST['one_line_success']
+        story.one_line_free = request.POST['one_line_free']
+        story.what_do_they_have_from = request.POST['what_do_they_have_from']
+        story.what_do_they_have_to = request.POST['what_do_they_have_to']
+        story.what_are_they_feeling_from = request.POST['what_are_they_feeling_from']
+        story.what_are_they_feeling_to = request.POST['what_are_they_feeling_to']
+        story.what_is_an_average_day_like_from = request.POST['what_is_an_average_day_like_from']
+        story.what_is_an_average_day_like_to = request.POST['what_is_an_average_day_like_to']
+        story.what_is_their_status_from = request.POST['what_is_their_status_from']
+        story.what_is_their_status_to = request.POST['what_is_their_status_to']
 
 
         story.save()

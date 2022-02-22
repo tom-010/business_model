@@ -20,6 +20,23 @@ class Story(WithDatesAndVersion, models.Model):
     avoid_failure = models.TextField(default='', blank=True)
     success = models.TextField(default='', blank=True)
 
+    integrated_story = models.TextField(default='', blank=True)
+
+    one_line_character = models.TextField(default='', blank=True)
+    one_line_problem = models.TextField(default='', blank=True)
+    one_line_plan = models.TextField(default='', blank=True)
+    one_line_success = models.TextField(default='', blank=True)
+    one_line_free = models.TextField(default='', blank=True)
+
+    what_do_they_have_from = models.TextField(default='', blank=True)
+    what_do_they_have_to = models.TextField(default='', blank=True)
+    what_are_they_feeling_from = models.TextField(default='', blank=True)
+    what_are_they_feeling_to = models.TextField(default='', blank=True)
+    what_is_an_average_day_like_from = models.TextField(default='', blank=True)
+    what_is_an_average_day_like_to = models.TextField(default='', blank=True)
+    what_is_their_status_from = models.TextField(default='', blank=True)
+    what_is_their_status_to = models.TextField(default='', blank=True)
+
     @property
     def problem(self):
         return f'(Villain) {self.problem_villain} (External) {self.problem_external} (Internal) {self.problem_internal} (Philosophical) {self.problem_philosophical}'
