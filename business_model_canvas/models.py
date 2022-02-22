@@ -46,7 +46,6 @@ class BusinessModelCanvas(WithDatesAndVersion, models.Model):
     revenue_streams = models.TextField(default='', blank=True)
 
     
-
     @staticmethod
     def example():
         return BusinessModelCanvas(
@@ -64,3 +63,38 @@ class BusinessModelCanvas(WithDatesAndVersion, models.Model):
         )
 
     
+class Story(WithDatesAndVersion, models.Model):
+    previous = models.ForeignKey('Story', null=True, blank=True, on_delete=models.SET_NULL)
+
+    character = models.TextField(default='', blank=True)
+    problem_villain = models.TextField(default='', blank=True)
+    problem_external = models.TextField(default='', blank=True)
+    problem_internal = models.TextField(default='', blank=True)
+    problem_philosophical = models.TextField(default='', blank=True)
+    guide_empathy = models.TextField(default='', blank=True)
+    guide_competence = models.TextField(default='', blank=True)
+    plan_process = models.TextField(default='', blank=True)
+    plan_agreement = models.TextField(default='', blank=True)
+    action_direct = models.TextField(default='', blank=True)
+    action_transitional = models.TextField(default='', blank=True)
+    avoid_failure = models.TextField(default='', blank=True)
+    success = models.TextField(default='', blank=True)
+
+    @property
+    def problem(self):
+        return f'(Villain) {self.problem_villain} (External) {self.problem_external} (Internal) {self.problem_internal} (Philosophical) {self.problem_philosophical}'
+
+    @property
+    def guide(self):
+        return f'(Empathy) {self.guide_empathy} (Competence) {self.guide_competence}'
+
+    @property
+    def plan(self):
+        return f'(Process) {self.plan_process} (Agreement) {self.plan_agreement}'
+
+    @property
+    def action(self):
+        return f'(Direct) {self.action_direct} (Transitional) {self.action_transitional}'
+
+    def __str__(self):
+        return f'[Character] {self.character} [Problem] {self.problem} [Guide] {self.guide} [Plan] {self.plan} [Action] {self.action} [Avoid Failure] {self.avoid_failure} [Success] {self.success}'
